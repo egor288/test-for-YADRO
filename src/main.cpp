@@ -7,5 +7,18 @@ int main(int argc, char *argv[]) {
         std::cout << "Usage: " << argv[0] << " <input_file>\n";
         return FAIL;
     }
+
+    std::vector<request> requests;
+    int price;
+    returnCode result = parseFile(argv[1], requests, price);
+    if (result == FILE_ERROR) {
+        std::cout << "Error: File not found\n";
+        return result;
+    }
+    if (result == PARSER_ERROR) {
+        std::cout << "Error: Parser error\n";
+        return result;
+    }
+    
     return 0;
 }
