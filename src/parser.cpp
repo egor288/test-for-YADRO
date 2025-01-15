@@ -78,8 +78,10 @@ returnCode parseFile(std::string fileName, std::vector<request>& result, int& pr
                 break;
 
             case 3:
-                if (std::stoi(token) > tableCounter)
+                if (std::stoi(token) > tableCounter) {
+                    std::cout << line;
                     return PARSER_ERROR;
+                }
                 request.PCNumber = std::stoi(token);
                 break;
             
