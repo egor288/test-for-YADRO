@@ -21,14 +21,13 @@ bool compareTime(const std::string& time1, const std::string& time2) {
     }
 }
 
-returnCode parseFile(std::string fileName, std::vector<request>& result, int& price) {
+returnCode parseFile(std::string fileName, std::vector<request>& result, int& price, int& tableCount, std::string& startTime, std::string& endTime) {
     std::ifstream file(fileName);
     if (!file) {
         return FILE_ERROR;
     }
     
     int tableCounter = -1;
-    std::string startTime = "", endTime = "";
     price = -1;
 
     std::string line;

@@ -9,8 +9,9 @@ int main(int argc, char *argv[]) {
     }
 
     std::vector<request> requests;
-    int price;
-    returnCode result = parseFile(argv[1], requests, price);
+    int price, tableCount;
+    std::string sartTime, endTime;
+    returnCode result = parseFile(argv[1], requests, price, tableCount, sartTime, endTime);
     if (result == FILE_ERROR) {
         std::cout << "Error: File not found\n";
         return result;
