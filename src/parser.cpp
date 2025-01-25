@@ -1,25 +1,5 @@
 #include "parser.h"
 
-bool compareTime(const std::string& time1, const std::string& time2) {
-    size_t pos1 = time1.find(':');
-    size_t pos2 = time2.find(':');
-    if (pos1 == std::string::npos || pos2 == std::string::npos) {
-        return false;
-    }
-
-    int hours1 = std::stoi(time1.substr(0, pos1));
-    int minutes1 = std::stoi(time1.substr(pos1 + 1));
-    int hours2 = std::stoi(time2.substr(0, pos2));
-    int minutes2 = std::stoi(time2.substr(pos2 + 1));
-
-    if (hours1 < hours2) {
-        return true;
-    } else if (hours1 > hours2) {
-        return false;
-    } else {
-        return minutes1 < minutes2;
-    }
-}
 
 returnCode parseFile(std::string fileName, std::vector<request>& result, int& price, int& tableCount, std::string& startTime, std::string& endTime) {
     std::ifstream file(fileName);

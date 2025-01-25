@@ -20,6 +20,13 @@ int main(int argc, char *argv[]) {
         std::cout << "Error: Parser error\n";
         return result;
     }
+
+    taskHandler* tasks = new taskHandler(requests, price, tableCount, sartTime, endTime);
+    tasks->executeTasks();
+    std::vector<request> res = tasks->retrunResult();
+    for (int i = 0; i < res.size(); i++) {
+        std::cout << res[i].time << ' ' << res[i].ID << ' ' << res[i].name << ' ' << res[i].PCNumber << ' ' << res[i].error << '\n';
+    }
     
     return 0;
 }

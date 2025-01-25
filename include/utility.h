@@ -15,7 +15,6 @@
 static std::regex NAMEREGEX("^[a-z0-9_-]+$");
 static std::regex TIMEREGEX("^([01][0-9]|2[0-3]):([0-5][0-9])$");
 
-static bool compareTime(const std::string& time1, const std::string& time2);
 
 enum returnCode {
     SUCCESS = 0,
@@ -35,10 +34,10 @@ struct request {
 };
 
 struct computerStatus{
-    computerStatus(int PCNumber) : PCNumber(PCNumber), isFree(true), clientID(-1), totalTime(0) {}
+    computerStatus(int PCNumber) : PCNumber(PCNumber), isFree(true), clientName(""), totalTime(0) {}
     int PCNumber;
     bool isFree;
-    int clientID;
+    std::string clientName;
     int totalTime;
 };
 
