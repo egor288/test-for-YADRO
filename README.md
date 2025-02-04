@@ -9,7 +9,7 @@
     ```Make TARGET=<Linux / Win>```(по умолчанию  = Linux)
 
 Ручная:
-    ```clang -o VisitorController src/*.cpp```
+    ```clang -o VisitorController src/*.cpp -Iinclude```
 
 
 ## Использование
