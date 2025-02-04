@@ -1,4 +1,4 @@
-#include "../include/utility.h"
+#include <utility>
 #include "parser.h"
 #include "taskHandler.h"
 
@@ -10,8 +10,8 @@ int main(int argc, char *argv[]) {
 
     std::vector<request> requests;
     int price, tableCount;
-    std::string sartTime, endTime;
-    returnCode result = parseFile(argv[1], requests, price, tableCount, sartTime, endTime);
+    std::string startTime, endTime;
+    returnCode result = parseFile(argv[1], requests, price, tableCount, startTime, endTime);
     if (result == FILE_ERROR) {
         std::cout << "Error: File not found\n";
         return result;
@@ -21,11 +21,28 @@ int main(int argc, char *argv[]) {
         return result;
     }
 
-    taskHandler* tasks = new taskHandler(requests, price, tableCount, sartTime, endTime);
+    taskHandler* tasks = new taskHandler(requests, price, tableCount, startTime, endTime);
     tasks->executeTasks();
     std::vector<request> res = tasks->retrunResult();
-    for (int i = 0; i < res.size(); i++) {
-        std::cout << res[i].time << ' ' << res[i].ID << ' ' << res[i].name << ' ' << res[i].PCNumber << ' ' << res[i].error << '\n';
+    std::vector<computerStatus> computers = tasks->returnComputers();
+
+    std::cout << startTime << '\n';
+    for (request ans : res) {
+       std::cout << ans.time << ' ' << ans.ID << ' ' << ans.name << ' ';
+        if (ans.PCNumber > 0 && ans.ID != 13) {
+            std::cout << ans.PCNumber << ' ';
+        }
+        std::cout << ans.error << '\n';
+    }
+
+    std::cout << endTime << '\n';
+
+    for (computerStatus computer : computers) {
+        std::cout << computer.PCNumber << ' ' 
+              << computer.totalRevenu << ' ' 
+              << std::setw(2) << std::setfill('0') << computer.totalTime / 60 << ':' 
+              << std::setw(2) << std::setfill('0') << computer.totalTime % 60 << '\n';
+
     }
     
     return 0;

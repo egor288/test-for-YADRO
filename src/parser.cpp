@@ -7,12 +7,12 @@ returnCode parseFile(std::string fileName, std::vector<request>& result, int& pr
         return FILE_ERROR;
     }
     
-    int tableCounter = -1;
+    tableCount = -1;
     price = -1;
 
     std::string line;
     std::getline(file, line);
-    tableCounter = std::stoi(line);
+    tableCount = std::stoi(line);
     std::getline(file, line, ' ');
     startTime = line;
     std::getline(file, line);
@@ -57,7 +57,7 @@ returnCode parseFile(std::string fileName, std::vector<request>& result, int& pr
                 break;
 
             case 3:
-                if (std::stoi(token) > tableCounter) {
+                if (std::stoi(token) > tableCount) {
                     std::cout << line;
                     return PARSER_ERROR;
                 }

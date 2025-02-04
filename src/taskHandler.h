@@ -25,6 +25,8 @@ class taskHandler {
 
     returnCode freeAll();
 
+    std::vector<computerStatus> returnComputers();
+
     std::vector<request> retrunResult();
 };
 

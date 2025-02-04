@@ -13,7 +13,7 @@ else ifeq ($(TARGET), Linux)
 endif
 
 VisitorController: src/*.cpp
-	@$(COMPILER) -o $(OUTPUT) src/*.cpp $(LDFLAGS)
+	@$(COMPILER) -o $(OUTPUT) src/*.cpp $(LDFLAGS) -Iinclude
 
 push:
 	git add *.cpp *.h Makefile README.md
